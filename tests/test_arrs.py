@@ -1,9 +1,17 @@
+import pytest
 from utils import arrs
 
 
-def test_get():
-    assert arrs.get([1, 2, 3], 1, "test") == 2
+@pytest.fixture
+def coll():
+    array = [1, 2, 3, 4]
+    return array
+
+
+def test_get(coll):
+    assert arrs.get(coll, 1, "test") == 2
     assert arrs.get([], 0, "test") == "test"
+    assert arrs.get(coll, 3, "test") == 4
 
 
 def test_slice():
